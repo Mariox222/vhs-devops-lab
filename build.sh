@@ -14,7 +14,7 @@ if ! command -v podman &> /dev/null; then
     exit 1
 fi
 
-podman build -t nexus-server:nexus -f Dockerfile .
+podman build --network=host -t doscker.io/nexus-server:nexus -f Dockerfile .
 
 # Check if the build was successful
 if [ $? -eq 0 ]; then
@@ -23,4 +23,4 @@ else
     echo "Error: Failed to build the Nexus server Podman image."
 fi
 
-rm nexus-3.37.3-02-unix.tar.gz
+#rm nexus-3.37.3-02-unix.tar.gz

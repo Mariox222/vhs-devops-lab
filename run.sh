@@ -7,17 +7,18 @@ if ! command -v podman &> /dev/null; then
 fi
 
 # check if nexus server image exists
-if podman image exists localhost/nexus-server:nexus; then
-    echo "nexus-server image does not exist, build it first"
-    exit 1
-fi
+# if ! podman image exists localhost/nexus-server:nexus; then
+#     echo "nexus-server image does not exist, build it first"
+#     exit 1
+# fi
 
 mkdir -p /tn_devops/nexus
 
 podman run -d -p 18081:8081 \
     --name nexus \
+    --restart=always \
     -v /tn_devops/nexus:/opt/nexus/sonatype-work \
-    localhost/nexus-server:nexus
+    nexus-server:nexus
 
 # Check if the container was started successfully
 if [ $? -eq 0 ]; then

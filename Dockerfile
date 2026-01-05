@@ -5,6 +5,7 @@ LABEL maintainer="Mario Basic <mbasic99@gmail.com>"
 
 RUN dnf update -y && dnf upgrade -y
 
+
 RUN dnf install -y java-1.8.0-openjdk-devel
 
 ENV NEXUS_HOME /opt/nexus
